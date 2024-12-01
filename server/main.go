@@ -1,4 +1,4 @@
-package Backend_Challenge
+package main
 
 import (
 	"encoding/csv"
