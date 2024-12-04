@@ -25,7 +25,7 @@ func AddMatrixElems(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Print each row
+	// Add all integers
 	sum := 0
 	for _, row := range numericMatrix {
 		for _, el := range row {
