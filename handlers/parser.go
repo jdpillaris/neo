@@ -43,3 +43,27 @@ func isValidMatrix(matrix [][]string) error {
 	}
 	return nil
 }
+
+func getIntMatrix(grid [][]string) ([][]int, error) {
+	gridLength := len(grid)
+	if gridLength == 0 {
+		return nil, fmt.Errorf("file is empty")
+	}
+
+	var numericMatrix [][]int
+	for i, row := range grid {
+		if len(row) != gridLength {
+			return nil, fmt.Errorf("number of rows not equal to size of row %d", i)
+		}
+		var numericRow []int
+		for j, cell := range row {
+			val, err := strconv.Atoi(cell)
+			if err != nil {
+				return nil, fmt.Errorf("invalid integer value in CSV at (%d, %d) cell: %v", i, j, cell)
+			}
+			numericRow = append(numericRow, val)
+		}
+		numericMatrix = append(numericMatrix, numericRow)
+	}
+	return numericMatrix, nil
+}

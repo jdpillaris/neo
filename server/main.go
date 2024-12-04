@@ -18,4 +18,5 @@ func setupRoutes() {
 	http.HandleFunc("/echo", handlers.EchoMatrix)
 	http.HandleFunc("/invert", handlers.TransposeMatrix)
 	http.HandleFunc("/flatten", handlers.FlattenMatrix)
+	http.HandleFunc("/add", handlers.AddMatrixElems)
 }
