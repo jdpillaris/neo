@@ -38,8 +38,8 @@ func TestEchoMatrix(t *testing.T) {
 			name:               "Invalid method",
 			method:             http.MethodGet,
 			csvContent:         "",
-			expectedStatusCode: http.StatusMethodNotAllowed,
-			expectedBody:       "only POST method is allowed",
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "request Content-Type isn't multipart/form-data",
 		},
 		{
 			name:   "Invalid CSV with non-numeric value",

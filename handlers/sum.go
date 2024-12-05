@@ -7,11 +7,6 @@ import (
 )
 
 func AddMatrixElems(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "only POST method is allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
 	grid, err := getGridFromFile(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
