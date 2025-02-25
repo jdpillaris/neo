@@ -13,7 +13,7 @@ func EchoMatrix(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = isValidMatrix(grid)
+	_, err = getIntMatrix(grid)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

@@ -13,17 +13,17 @@ func FlattenMatrix(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = isValidMatrix(grid)
+	_, err = getIntMatrix(grid)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	// Print each row
+	// Concatenate to a string
 	response := strings.Join(grid[0], ",")
 	for _, row := range grid[1:] {
 		response = fmt.Sprintf("%s,%s", response, strings.Join(row, ","))
 	}
-	response = response + "\n"
+	response += "\n"
 	fmt.Fprint(w, response)
 }

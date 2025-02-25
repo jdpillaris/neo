@@ -25,25 +25,6 @@ func getGridFromFile(r *http.Request) ([][]string, error) {
 	return rows, nil
 }
 
-func isValidMatrix(matrix [][]string) error {
-	matrixLength := len(matrix)
-	if matrixLength == 0 {
-		return fmt.Errorf("file is empty")
-	}
-
-	for i, row := range matrix {
-		if len(row) != matrixLength {
-			return fmt.Errorf("number of rows not equal to size of row %d", i)
-		}
-		for j, cell := range row {
-			if _, err := strconv.Atoi(cell); err != nil {
-				return fmt.Errorf("invalid integer value in CSV at (%d, %d) cell: %v", i, j, cell)
-			}
-		}
-	}
-	return nil
-}
-
 func getIntMatrix(grid [][]string) ([][]int, error) {
 	gridLength := len(grid)
 	if gridLength == 0 {
