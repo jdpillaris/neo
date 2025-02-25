@@ -49,14 +49,37 @@ func TestEchoMatrix(t *testing.T) {
 			expectedBody:       "1,2,3\n4,5,6\n7,8,9\n",
 		},
 		{
-			name:   "Valid CSV rectangle matrix",
+			name:   "Invalid CSV rectangle matrix",
 			method: http.MethodPost,
 			csvContent: `1,2,3
 4,5,6
 7,8,9
 10,11,12`,
-			expectedStatusCode: http.StatusOK,
-			expectedBody:       "1,2,3\n4,5,6\n7,8,9\n10,11,12\n",
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "number of rows not equal to size of row",
+		},
+		{
+			name:               "Invalid method",
+			method:             http.MethodGet,
+			csvContent:         "",
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "request Content-Type isn't multipart/form-data",
+		},
+		{
+			name:   "Invalid CSV with non-numeric value",
+			method: http.MethodPost,
+			csvContent: `21,2,685
+			47594763,five,859
+			75,18,9285`,
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "invalid integer value in CSV",
+		},
+		{
+			name:               "Empty CSV",
+			method:             http.MethodPost,
+			csvContent:         "",
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "file is empty",
 		},
 	}
 
