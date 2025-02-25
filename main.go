@@ -17,4 +17,5 @@ func main() {
 func setupRoutes() {
 	http.HandleFunc("POST /echo", handlers.EchoMatrix)
 	http.HandleFunc("POST /invert", handlers.TransposeMatrix)
+	http.HandleFunc("POST /flatten", handlers.FlattenMatrix)
 }
