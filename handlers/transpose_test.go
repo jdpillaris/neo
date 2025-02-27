@@ -24,6 +24,13 @@ func TestTransposeMatrix(t *testing.T) {
 			expectedStatusCode: http.StatusOK,
 			expectedBody:       "1,2,3\n4,5,6\n7,8,9\n",
 		},
+		{
+			name:               "Empty CSV",
+			method:             http.MethodPost,
+			csvContent:         "",
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "file is empty",
+		},
 	}
 
 	for _, testCase := range testCases {

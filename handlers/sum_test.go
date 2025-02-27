@@ -24,6 +24,15 @@ func TestAddMatrixElems(t *testing.T) {
 			expectedStatusCode: http.StatusOK,
 			expectedBody:       "45\n",
 		},
+		{
+			name:   "Invalid CSV with missing cell",
+			method: http.MethodPost,
+			csvContent: `1,2,3
+4,527
+7,8,9`,
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "wrong number of fields",
+		},
 	}
 
 	for _, testCase := range testCases {

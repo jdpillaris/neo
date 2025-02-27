@@ -50,13 +50,6 @@ func TestEchoMatrix(t *testing.T) {
 			expectedStatusCode: http.StatusBadRequest,
 			expectedBody:       "invalid integer value in CSV",
 		},
-		{
-			name:               "Empty CSV",
-			method:             http.MethodPost,
-			csvContent:         "",
-			expectedStatusCode: http.StatusBadRequest,
-			expectedBody:       "file is empty",
-		},
 	}
 
 	for _, testCase := range testCases {

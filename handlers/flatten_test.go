@@ -24,6 +24,15 @@ func TestFlattenMatrix(t *testing.T) {
 			expectedStatusCode: http.StatusOK,
 			expectedBody:       "1,2,3,4,5,6,7,8,9\n",
 		},
+		{
+			name:   "Invalid CSV with empty cell",
+			method: http.MethodPost,
+			csvContent: `21,19,65
+			473,,859
+			75,34,8`,
+			expectedStatusCode: http.StatusBadRequest,
+			expectedBody:       "invalid integer value in CSV",
+		},
 	}
 
 	for _, testCase := range testCases {
