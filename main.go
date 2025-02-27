@@ -19,4 +19,5 @@ func setupRoutes() {
 	http.HandleFunc("POST /invert", handlers.TransposeMatrix)
 	http.HandleFunc("POST /flatten", handlers.FlattenMatrix)
 	http.HandleFunc("POST /add", handlers.AddMatrixElems)
+	http.HandleFunc("POST /multiply", handlers.MultiplyMatrixElems)
 }
